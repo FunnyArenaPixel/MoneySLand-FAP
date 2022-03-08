@@ -8,6 +8,7 @@
     <groupId>money</groupId>
     <artifactId>MoneySLand</artifactId>
     <version>1.1.0</version>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -15,109 +16,54 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>opencollab-repo-release</id>
+            <url>https://repo.opencollab.dev/maven-releases/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>opencollab-repo-snapshot</id>
+            <url>https://repo.opencollab.dev/maven-snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>cn.nukkit</groupId>
             <artifactId>nukkit</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/nukkit-1.0-SNAPSHOT.jar</systemPath>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
-            <groupId>money</groupId>
-            <artifactId>Money</artifactId>
-            <version>2.0.6</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/Money-2.0.6.jar</systemPath>
+            <groupId>me.onebone</groupId>
+            <artifactId>economyapi</artifactId>
+            <version>2.0.0-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
+
+        <!-- <dependency>
+             <groupId>money</groupId>
+             <artifactId>money</artifactId>
+             <version>3.3</version>
+             <scope>system</scope>
+             <systemPath>${project.basedir}/lib/Money-3.3.jar</systemPath>
+         </dependency>-->
     </dependencies>
 
     <url>https://github.com/MamoeTech/MoneySLand</url>
 
-    <packaging>jar</packaging>
-    <build>
-        <defaultGoal>package</defaultGoal>
 
-        <sourceDirectory>src/main/java</sourceDirectory>
-
-        <resources>
-
-            <resource>
-                <directory>src/main/resources</directory>
-
-                <includes>
-                    <include>**/*.*</include>
-                </includes>
-            </resource>
-
-        </resources>
-
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>2.5.2</version>
-                <executions>
-                    <execution>
-                        <id>install-external</id>
-                        <phase>clean</phase>
-                        <configuration>
-                            <repositoryLayout>default</repositoryLayout>
-                            <version>0.8</version>
-                            <packaging>jar</packaging>
-                            <generatePom>true</generatePom>
-                        </configuration>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>1.4.1</version>
-                <executions>
-                    <execution>
-                        <id>enforce</id>
-                        <configuration>
-                            <rules>
-                                <DependencyConvergence/>
-                            </rules>
-                        </configuration>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.1</version>
-                <configuration>
-                    <attach>true</attach>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-
-    </build>
 </project>
