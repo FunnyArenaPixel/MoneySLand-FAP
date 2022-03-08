@@ -8,14 +8,29 @@ import money.sland.SLand;
  * @author Him188 @ MoneySLand Project
  */
 public class MoneySLandClearEvent extends MoneySLandEvent implements Cancellable {
-	private static final HandlerList handlers = new HandlerList();
+    private static final HandlerList handlers = new HandlerList();
 
-	public static HandlerList getHandlers() {
-		return handlers;
-	}
+    public static HandlerList getHandlers() {
+        return handlers;
+    }
 
 
-	public MoneySLandClearEvent(SLand land) {
-		super(land);
-	}
+    public MoneySLandClearEvent(SLand land) {
+        super(land);
+    }
+
+    @Override
+    public boolean isCancelled() {
+        return false;
+    }
+
+    @Override
+    public void setCancelled() {
+
+    }
+
+    @Override
+    public void setCancelled(boolean forceCancel) {
+
+    }
 }

@@ -4,10 +4,10 @@ main: money.MoneySLand
 load: STARTUP
 author: Him188
 version: "1.1.0"
-api: ["1.0.0"]
+api: [ "1.0.9" ]
 
 depend:
-- Money
+  - EconomyAPI
 
 description: "地皮"
 # TODO 2017/07/03 支持配置文件修改权限

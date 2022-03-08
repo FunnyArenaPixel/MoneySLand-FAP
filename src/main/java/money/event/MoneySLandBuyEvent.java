@@ -36,5 +36,20 @@ public class MoneySLandBuyEvent extends MoneySLandEvent implements Cancellable {
     public Player getBuyer() {
         return buyer;
     }
+
+    @Override
+    public boolean isCancelled() {
+        return false;
+    }
+
+    @Override
+    public void setCancelled() {
+
+    }
+
+    @Override
+    public void setCancelled(boolean forceCancel) {
+
+    }
 }
 

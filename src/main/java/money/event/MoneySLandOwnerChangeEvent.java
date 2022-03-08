@@ -11,39 +11,55 @@ import java.util.Objects;
  * @author Him188 @ MoneySLand Project
  */
 public class MoneySLandOwnerChangeEvent extends MoneySLandEvent implements Cancellable {
-	private static final HandlerList handlers = new HandlerList();
+    private static final HandlerList handlers = new HandlerList();
 
-	public static HandlerList getHandlers() {
-		return handlers;
-	}
+    public static HandlerList getHandlers() {
+        return handlers;
+    }
 
 
-	private final Cause cause;
+    private final Cause cause;
 
-	private Player newOwner;
+    private Player newOwner;
 
-	public enum Cause{
-		BUY,
-		TRANSFER,
-		SELL,
-		PLUGIN, // for other plugins
-	}
 
-	public MoneySLandOwnerChangeEvent(SLand land, Player newOwner, Cause cause) {
-		super(land);
-		this.newOwner = newOwner; //nullable
-		this.cause = Objects.requireNonNull(cause);
-	}
+    public enum Cause {
+        BUY,
+        TRANSFER,
+        SELL,
+        PLUGIN, // for other plugins
+    }
 
-	public Cause getCause() {
-		return cause;
-	}
+    public MoneySLandOwnerChangeEvent(SLand land, Player newOwner, Cause cause) {
+        super(land);
+        this.newOwner = newOwner; //nullable
+        this.cause = Objects.requireNonNull(cause);
+    }
 
-	public Player getNewOwner() {
-		return newOwner;
-	}
+    public Cause getCause() {
+        return cause;
+    }
 
-	public void setNewOwner(Player newOwner) {
-		this.newOwner = newOwner;
-	}
+    public Player getNewOwner() {
+        return newOwner;
+    }
+
+    public void setNewOwner(Player newOwner) {
+        this.newOwner = newOwner;
+    }
+
+    @Override
+    public boolean isCancelled() {
+        return false;
+    }
+
+    @Override
+    public void setCancelled() {
+
+    }
+
+    @Override
+    public void setCancelled(boolean forceCancel) {
+
+    }
 }
