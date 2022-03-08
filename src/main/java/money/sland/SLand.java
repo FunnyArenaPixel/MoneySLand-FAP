@@ -234,7 +234,7 @@ public final class SLand { // TODO: 2017/7/2 javadoc
      * @return if this land has owner
      */
     public boolean isOwned() {
-        return getOwner() != null && !getOwner().isEmpty();
+        return getOwner() != null && !getOwner().equals("null") && !getOwner().isEmpty();
     }
 
     public Set<String> getInvitees() {

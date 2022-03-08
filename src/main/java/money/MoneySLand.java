@@ -303,7 +303,7 @@ public final class MoneySLand extends PluginBase implements MoneySLandAPI {
     public boolean buyLand(SLand land, Player player) {
         float price = calculatePrice(player, land);
 
-        if (EconomyAPI.getInstance().myMoney(player) > price) {
+        if (EconomyAPI.getInstance().myMoney(player) >= price) {
 
             MoneySLandBuyEvent event = new MoneySLandBuyEvent(land, player, price);
             Server.getInstance().getPluginManager().callEvent(event);
@@ -317,11 +317,11 @@ public final class MoneySLand extends PluginBase implements MoneySLandAPI {
                 return false;
             }
 
-            land.setOwner(player.getName());
-            if (!(EconomyAPI.getInstance().reduceMoney(player, event.getPrice()) != EconomyAPI.RET_SUCCESS)) {
+            if (EconomyAPI.getInstance().reduceMoney(player, event.getPrice()) != EconomyAPI.RET_SUCCESS) {
                 return false;
             }
 
+            land.setOwner(player.getName());
             Server.getInstance().getLevelByName(land.getLevel()).setBlock(land.getShopBlock(), Block.get(Block.AIR));
             return true;
         } else {
@@ -331,7 +331,7 @@ public final class MoneySLand extends PluginBase implements MoneySLandAPI {
 
     @Override
     public float calculatePrice(Player player, SLand land) {
-        float price = land.getBuyingPrice() * land.getSquare();
+        float price = land.getBuyingPrice();
 
         MoneySLandPriceCalculateEvent event = new MoneySLandPriceCalculateEvent(land, player, price);
         Server.getInstance().getPluginManager().callEvent(event);
