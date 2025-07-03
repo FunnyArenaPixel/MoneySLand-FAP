@@ -51,18 +51,7 @@ public final class MoneySLand extends PluginBase implements MoneySLandAPI {
 
     private TaskHandler savingTask;
 
-    private static final Map<String, Class<? extends SLandCommand>> COMMAND_CLASSES = new HashMap<String, Class<? extends SLandCommand>>() {
-        {
-            put("generateland", GenerateLandCommand.class);
-            put("gotoland", GoToLandCommand.class);
-            put("idleland", IdleLandCommand.class);
-            put("landid", LandIdCommand.class);
-            put("myland", MyLandCommand.class);
-            put("clearland", ClearLandCommand.class);
-            put("sellland", SellLandCommand.class);
-            put("landinvitee", LandInviteeCommand.class);
-        }
-    };
+    private static final Map<String, Class<? extends SLandCommand>> COMMAND_CLASSES = new HashMap<>();
 
     @Override
     public void onLoad() {
@@ -301,6 +290,13 @@ public final class MoneySLand extends PluginBase implements MoneySLandAPI {
 
     @Override
     public boolean buyLand(SLand land, Player player) {
+        //FAPixel SkyPVP家园系统
+        //每位玩家最多购买一个家园
+        if (this.getLands(player.getName()).length >= 1) {
+            player.sendMessage(TextFormat.RED + "购买失败! 每位玩家最多拥有一个家园!");
+            return false;
+        }
+
         float price = calculatePrice(player, land);
 
         if (EconomyAPI.getInstance().myMoney(player) >= price) {

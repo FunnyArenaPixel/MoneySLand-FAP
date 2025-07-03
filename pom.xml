@@ -53,14 +53,6 @@
             <version>2.0.0-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-
-        <!-- <dependency>
-             <groupId>money</groupId>
-             <artifactId>money</artifactId>
-             <version>3.3</version>
-             <scope>system</scope>
-             <systemPath>${project.basedir}/lib/Money-3.3.jar</systemPath>
-         </dependency>-->
     </dependencies>
 
     <url>https://github.com/MamoeTech/MoneySLand</url>
