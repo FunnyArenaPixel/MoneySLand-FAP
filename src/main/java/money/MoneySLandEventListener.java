@@ -56,8 +56,10 @@ public final class MoneySLandEventListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void permissionChecker(PlayerInteractEvent event) {
-        if (event.getItem().getId() == Item.STICK) {
-            event.getPlayer().sendMessage(event.getBlock().getLocation().toString());
+        if (event.getItem() != null) {
+            if (event.getItem().getId() == Item.STICK) {
+                event.getPlayer().sendMessage(event.getBlock().getLocation().toString());
+            }
         }
         try {
             if (isAction(METHOD.invoke(event))
